@@ -1,16 +1,26 @@
-<!DOCTYPE html>
+function divide(arr, n) {
+    const result = [];
+    let current = [];
+    let currentSum = 0;
 
-<html>
+    for (let i = 0; i < arr.length; i++) {
+        if (currentSum + arr[i] <= n) {
+            current.push(arr[i]);
+            currentSum += arr[i];
+        } else {
+            if (current.length > 0) {
+                result.push(current);
+            }
+            // Start a new subarray
+            current = [arr[i]];
+            currentSum = arr[i];
+        }
+    }
 
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+    // Push the last subarray if it's not empty
+    if (current.length > 0) {
+        result.push(current);
+    }
 
-<body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
-
-</body>
-
-</html>
+    return result;
+}
